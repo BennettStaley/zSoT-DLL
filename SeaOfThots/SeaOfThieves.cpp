@@ -578,14 +578,23 @@ void SeaOfThieves::DrawItem(AHUD* hud, AActor* item)
 
 		FLinearColor color = common;
 
-		if (rarity == "Common")
-			color = white;
-		else if (rarity == "Rare")
+		if (type.find("Common") != string::npos)
+			color = common;
+		else if (type.find("Rare") != string::npos)
 			color = rare;
-		else if (rarity == "Legendary")
+		else if (type.find("Legendary") != string::npos)
 			color = legendary;
-		else if (rarity == "Mythical")
+		else if (type.find("Mythical") != string::npos)
 			color = mythical;
+
+		if (type.find("Fort") != string::npos
+			|| type.find("BigGunpowderBarrel") != string::npos
+			|| type.find("Ashen") != string::npos
+			|| type.find("Drunken") != string::npos
+			|| type.find("Weeping") != string::npos
+			|| type.find("Rome") != string::npos
+			|| type.find("PirateLegend") != string::npos)
+			color = special;
 
 		if (type.find("Fort") != string::npos
 			|| type.find("BigGunpowderBarrel") != string::npos
