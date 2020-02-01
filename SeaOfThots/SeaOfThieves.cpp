@@ -564,8 +564,8 @@ void SeaOfThieves::DrawItem(AHUD* hud, AActor* item)
 		auto rarity = itemInfo->Rarity;
 
 		wstring itemName = UKismetTextLibrary::Conv_TextToString(itemInfo->Desc->Title).c_str();
-		// Asuming actor is of type AActor*
-		SeaOfThieves::Log(hud, Utilities::string_format("ActorPointer: 0x%08X", actor);
+		
+		
 		if (type.find("Rome") != string::npos)
 		{
 			itemName = L"Sea Dogs Chest";
