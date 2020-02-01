@@ -564,7 +564,8 @@ void SeaOfThieves::DrawItem(AHUD* hud, AActor* item)
 		auto rarity = itemInfo->Rarity;
 
 		wstring itemName = UKismetTextLibrary::Conv_TextToString(itemInfo->Desc->Title).c_str();
-
+		// Asuming actor is of type AActor*
+		SeaOfThieves::Log(hud, Utilities::string_format("ActorPointer: 0x%08X", actor);
 		if (type.find("Rome") != string::npos)
 		{
 			itemName = L"Sea Dogs Chest";
@@ -747,12 +748,22 @@ void SeaOfThieves::DrawPlayer(AHUD* hud, AActor* actor)
 	if (playerName == localPlayerName)
 		return;
 
+	static const uint16_t FOV = 10;
 	FRotator currentRotation = localPlayer->Controller->ControlRotation;
-	FRotator lookAtRotation = UKismetMathLibrary::FindLookAtRotation(localPlayer->K2_GetActorLocation(), FVector(location.X, location.Y, location.Z - 35));
-	lookAtRotation.Roll = 0;
+	FRotator lookAtRotation = UKismetMathLibrary::FindLookAtRotation(localPlayer->K2_GetActorLocation(), FVector(location.X, location.Y, location.Z));
+	if (currentRotation.Yaw >= 180)
+		currentRotation.Yaw -= 360;
+	if (currentRotation.Pitch >= 180)
+		currentRotation.Pitch -= 360;
 	FRotator rotationOffset = lookAtRotation - currentRotation;
-	rotationOffset.Roll = 0;
 	FVector v = player->GetVelocity();
+
+	if (GetPlayerController()->IsInputKeyDown(FKey("C")) && enemy) {
+		if ((rotationOffset.Pitch < FOV && rotationOffset.Yaw < FOV) && (rotationOffset.Pitch > -FOV && rotationOffset.Yaw > -FOV)) {
+			FHitResult Actor;
+			localPlayer->Controller->ControlRotation = lookAtRotation;
+		}
+	}
 
 	if (GetPlayerController()->IsInputKeyDown(FKey("C"))) {
 		FHitResult ignore;
