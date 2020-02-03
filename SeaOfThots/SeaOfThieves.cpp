@@ -597,14 +597,6 @@ void SeaOfThieves::DrawItem(AHUD* hud, AActor* item)
 			|| type.find("PirateLegend") != string::npos)
 			color = special;
 
-		if (type.find("Fort") != string::npos
-			|| type.find("BigGunpowderBarrel") != string::npos
-			|| type.find("Ashen") != string::npos
-			|| type.find("Drunken") != string::npos
-			|| type.find("Weeping") != string::npos
-			|| type.find("Rome") != string::npos)
-			color = special;
-
 		FVector2D screen;
 
 		if (WorldToScreen(location, &screen))
@@ -748,6 +740,9 @@ void SeaOfThieves::DrawPlayer(AHUD* hud, AActor* actor)
 	if (playerName == localPlayerName)
 		return;
 
+	/*¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+			------ AIMBOT ------
+	-----------------------------------*/
 	static const uint16_t FOV = 10;
 	FRotator currentRotation = localPlayer->Controller->ControlRotation;
 	FRotator lookAtRotation = UKismetMathLibrary::FindLookAtRotation(localPlayer->K2_GetActorLocation(), FVector(location.X, location.Y, location.Z));
@@ -761,14 +756,10 @@ void SeaOfThieves::DrawPlayer(AHUD* hud, AActor* actor)
 	if (GetPlayerController()->IsInputKeyDown(FKey("C")) && enemy) {
 		if ((rotationOffset.Pitch < FOV && rotationOffset.Yaw < FOV) && (rotationOffset.Pitch > -FOV && rotationOffset.Yaw > -FOV)) {
 			FHitResult Actor;
-			localPlayer->Controller->ControlRotation = lookAtRotation;
+			localPlayer->Controller->ClientSetRotation(lookAtRotation);
 		}
 	}
-
-	if (GetPlayerController()->IsInputKeyDown(FKey("C"))) {
-		FHitResult ignore;
-		localPlayer->Controller->ControlRotation = lookAtRotation;
-	}
+	/*¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯*/
 
 	FVector2D healthLocationScreen;
 	FVector healthLocation = location;
