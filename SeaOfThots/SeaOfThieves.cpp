@@ -1170,12 +1170,10 @@ void SeaOfThieves::DrawBones(AHUD* hud, AActor* actor, FLinearColor color) {
 	if (!world)
 		return;
 	FVector extent;
-	actor->GetActorBounds(true, &origin, &extent);
 	FRotator rotation = actor->K2_GetActorRotation();
 	UPoseableMeshComponent* playerBones = (UPoseableMeshComponent*)actor;
 	UHIKCharacterization* bone = (UHIKCharacterization*)actor;
 	//BONE VECTORS
-	extent.Z = extent.Z;
 	FVector Head, Neck, Hips, RightElbow, LeftElbow, RightHand, LeftHand, RightKnee, LeftKnee, RightFoot, LeftFoot;
 	Head = playerBones->GetBoneLocationByName(bone->Head, EBoneSpaces::EBoneSpaces__WorldSpace);
 	Neck = playerBones->GetBoneLocationByName(bone->Spine, EBoneSpaces::EBoneSpaces__WorldSpace);
@@ -1220,6 +1218,67 @@ void SeaOfThieves::DrawMermaid(AHUD* hud, AActor* actor)
 void SeaOfThieves::DrawStorm(AHUD* hud, AActor* actor)
 {
 }
+/*¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+		-- BOX ESP --
+--------------------------*/
+void SeaOfThieves::DrawBones(AHUD* hud, AActor* actor, FLinearColor color) {
+	// NULL checks
+	UWorld* world = AthenaGameViewportClient->World;
+	if (!world)
+		return;
+	FVector extent;
+	FRotator rotation = actor->K2_GetActorRotation();
+	UPoseableMeshComponent* playerBones = (UPoseableMeshComponent*)actor;
+	UHIKCharacterization* bone = (UHIKCharacterization*)actor;
+	//BONE VECTORS
+	FVector Head, Neck, Hips, RightElbow, LeftElbow, RightHand, LeftHand, RightKnee, LeftKnee, RightFoot, LeftFoot;
+	Head = playerBones->GetBoneLocationByName(bone->Head, EBoneSpaces::EBoneSpaces__WorldSpace);
+	Neck = playerBones->GetBoneLocationByName(bone->Spine, EBoneSpaces::EBoneSpaces__WorldSpace);
+	Hips = playerBones->GetBoneLocationByName(bone->Hips, EBoneSpaces::EBoneSpaces__WorldSpace);
+	RightElbow = playerBones->GetBoneLocationByName(bone->RightArm, EBoneSpaces::EBoneSpaces__WorldSpace);
+	LeftElbow = playerBones->GetBoneLocationByName(bone->LeftArm, EBoneSpaces::EBoneSpaces__WorldSpace);
+	RightHand = playerBones->GetBoneLocationByName(bone->RightHand, EBoneSpaces::EBoneSpaces__WorldSpace);
+	LeftHand = playerBones->GetBoneLocationByName(bone->LeftHand, EBoneSpaces::EBoneSpaces__WorldSpace);
+	RightKnee = playerBones->GetBoneLocationByName(bone->RightLeg, EBoneSpaces::EBoneSpaces__WorldSpace);
+	LeftKnee = playerBones->GetBoneLocationByName(bone->LeftLeg, EBoneSpaces::EBoneSpaces__WorldSpace);
+	RightFoot = playerBones->GetBoneLocationByName(bone->RightFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
+	LeftFoot = playerBones->GetBoneLocationByName(bone->LeftFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
+
+	FVector2D Head1, Neck1, Hips1, RightElbow1, LeftElbow1, RightHand1, LeftHand1, RightKnee1, LeftKnee1, RightFoot1, LeftFoot1;
+	if (!WorldToScreen(Head, &Head1)
+		|| !WorldToScreen(Neck, &Neck1)
+		|| !WorldToScreen(Hips, &Hips1)
+		|| !WorldToScreen(RightElbow, &RightElbow1)
+		|| !WorldToScreen(LeftElbow, &LeftElbow1)
+		|| !WorldToScreen(RightHand, &RightHand1)
+		|| !WorldToScreen(LeftHand, &LeftHand1)
+		|| !WorldToScreen(RightKnee, &RightKnee1)
+		|| !WorldToScreen(LeftKnee, &LeftKnee1)
+		|| !WorldToScreen(RightFoot, &RightFoot1)
+		|| !WorldToScreen(LeftFoot, &LeftFoot1)
+		|| !WorldToScreen(LeftKnee, &LeftKnee1)
+		|| !WorldToScreen(LeftKnee, &LeftKnee1))
+	{
+		return;
+	}
+
+	//Spine(headtocrotch)
+	hud->Canvas->K2_DrawLine(Head1, Neck1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Neck1, Hips1, 1.5f, color);
+	//Right arm
+	hud->Canvas->K2_DrawLine(Neck1, RightElbow1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(RightElbow1, RightHand1, 1.5f, color);
+	//Left arm
+	hud->Canvas->K2_DrawLine(Neck1, LeftElbow1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(LeftElbow1, LeftHand1, 1.5f, color);
+	//Right leg
+	hud->Canvas->K2_DrawLine(Hips1, RightKnee1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(RightKnee1, RightFoot1, 1.5f, color);
+	//Left leg
+	hud->Canvas->K2_DrawLine(Hips1, LeftKnee1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(LeftKnee1, LeftFoot1, 1.5f, color);
+}
+/*-------------------------------------------------------------------------------------------------*/
 
 void SeaOfThieves::DrawBoundingBox(AHUD* hud, AActor* actor, FLinearColor color)
 {
