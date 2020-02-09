@@ -1164,45 +1164,45 @@ void SeaOfThieves::DrawCollectorsChest(AHUD* hud, AActor* actor)
 /*¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 	-- BONES --
 -------------------*/
-void SeaOfThieves::DrawBones(AHUD* hud, AActor* actor, FLinearColor color) {
-	// NULL checks
-	UWorld* world = AthenaGameViewportClient->World;
-	if (!world)
-		return;
-	FVector extent;
-	FRotator rotation = actor->K2_GetActorRotation();
-	UPoseableMeshComponent* playerBones = (UPoseableMeshComponent*)actor;
-	UHIKCharacterization* bone = (UHIKCharacterization*)actor;
-	//BONE VECTORS
-	FVector Head, Neck, Hips, RightElbow, LeftElbow, RightHand, LeftHand, RightKnee, LeftKnee, RightFoot, LeftFoot;
-	Head = playerBones->GetBoneLocationByName(bone->Head, EBoneSpaces::EBoneSpaces__WorldSpace);
-	Neck = playerBones->GetBoneLocationByName(bone->Spine, EBoneSpaces::EBoneSpaces__WorldSpace);
-	Hips = playerBones->GetBoneLocationByName(bone->Hips, EBoneSpaces::EBoneSpaces__WorldSpace);
-	RightElbow = playerBones->GetBoneLocationByName(bone->RightArm, EBoneSpaces::EBoneSpaces__WorldSpace);
-	LeftElbow = playerBones->GetBoneLocationByName(bone->LeftArm, EBoneSpaces::EBoneSpaces__WorldSpace);
-	RightHand = playerBones->GetBoneLocationByName(bone->RightHand, EBoneSpaces::EBoneSpaces__WorldSpace);
-	LeftHand = playerBones->GetBoneLocationByName(bone->LeftHand, EBoneSpaces::EBoneSpaces__WorldSpace);
-	RightKnee = playerBones->GetBoneLocationByName(bone->RightLeg, EBoneSpaces::EBoneSpaces__WorldSpace);
-	LeftKnee = playerBones->GetBoneLocationByName(bone->LeftLeg, EBoneSpaces::EBoneSpaces__WorldSpace);
-	RightFoot = playerBones->GetBoneLocationByName(bone->RightFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
-	LeftFoot = playerBones->GetBoneLocationByName(bone->LeftFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
-
-	//Spine(headtocrotch)
-	hud->Canvas->K2_DrawLine(Head, Neck, 2.f, color);
-	hud->Canvas->K2_DrawLine(Neck, Hips, 2.f, color);
-	//Right arm
-	hud->Canvas->K2_DrawLine(Neck, RightElbow, 2.f, color);
-	hud->Canvas->K2_DrawLine(RightElbow, RightHand, 2.f, color);
-	//Left arm
-	hud->Canvas->K2_DrawLine(Neck, LeftElbow, 2.f, color);
-	hud->Canvas->K2_DrawLine(LeftElbow, LeftHand, 2.f, color);
-	//Right leg
-	hud->Canvas->K2_DrawLine(Hips, RightKnee, 2.f, color);
-	hud->Canvas->K2_DrawLine(RightKnee, RightFoot, 2.f, color);
-	//Left leg
-	hud->Canvas->K2_DrawLine(Hips, LeftKnee, 2.f, color);
-	hud->Canvas->K2_DrawLine(LeftKnee, LeftFoot, 2.f, color);
-}
+//void SeaOfThieves::DrawBones(AHUD* hud, AActor* actor, FLinearColor color) {
+//	// NULL checks
+//	UWorld* world = AthenaGameViewportClient->World;
+//	if (!world)
+//		return;
+//	FVector extent;
+//	FRotator rotation = actor->K2_GetActorRotation();
+//	UPoseableMeshComponent* playerBones = (UPoseableMeshComponent*)actor;
+//	UHIKCharacterization* bone = (UHIKCharacterization*)actor;
+//	//BONE VECTORS
+//	FVector Head, Neck, Hips, RightElbow, LeftElbow, RightHand, LeftHand, RightKnee, LeftKnee, RightFoot, LeftFoot;
+//	Head = playerBones->GetBoneLocationByName(bone->Head, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	Neck = playerBones->GetBoneLocationByName(bone->Spine, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	Hips = playerBones->GetBoneLocationByName(bone->Hips, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	RightElbow = playerBones->GetBoneLocationByName(bone->RightArm, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	LeftElbow = playerBones->GetBoneLocationByName(bone->LeftArm, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	RightHand = playerBones->GetBoneLocationByName(bone->RightHand, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	LeftHand = playerBones->GetBoneLocationByName(bone->LeftHand, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	RightKnee = playerBones->GetBoneLocationByName(bone->RightLeg, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	LeftKnee = playerBones->GetBoneLocationByName(bone->LeftLeg, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	RightFoot = playerBones->GetBoneLocationByName(bone->RightFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
+//	LeftFoot = playerBones->GetBoneLocationByName(bone->LeftFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
+//
+//	//Spine(headtocrotch)
+//	hud->Canvas->K2_DrawLine(Head, Neck, 2.f, color);
+//	hud->Canvas->K2_DrawLine(Neck, Hips, 2.f, color);
+//	//Right arm
+//	hud->Canvas->K2_DrawLine(Neck, RightElbow, 2.f, color);
+//	hud->Canvas->K2_DrawLine(RightElbow, RightHand, 2.f, color);
+//	//Left arm
+//	hud->Canvas->K2_DrawLine(Neck, LeftElbow, 2.f, color);
+//	hud->Canvas->K2_DrawLine(LeftElbow, LeftHand, 2.f, color);
+//	//Right leg
+//	hud->Canvas->K2_DrawLine(Hips, RightKnee, 2.f, color);
+//	hud->Canvas->K2_DrawLine(RightKnee, RightFoot, 2.f, color);
+//	//Left leg
+//	hud->Canvas->K2_DrawLine(Hips, LeftKnee, 2.f, color);
+//	hud->Canvas->K2_DrawLine(LeftKnee, LeftFoot, 2.f, color);
+//}
 /*----------------------------------------------------------------------------------------------------------------*/
 
 void SeaOfThieves::DrawShipwreck(AHUD* hud, AActor* actor)
@@ -1244,39 +1244,39 @@ void SeaOfThieves::DrawBones(AHUD* hud, AActor* actor, FLinearColor color) {
 	RightFoot = playerBones->GetBoneLocationByName(bone->RightFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
 	LeftFoot = playerBones->GetBoneLocationByName(bone->LeftFoot, EBoneSpaces::EBoneSpaces__WorldSpace);
 
-	FVector2D Head1, Neck1, Hips1, RightElbow1, LeftElbow1, RightHand1, LeftHand1, RightKnee1, LeftKnee1, RightFoot1, LeftFoot1;
-	if (!WorldToScreen(Head, &Head1)
-		|| !WorldToScreen(Neck, &Neck1)
-		|| !WorldToScreen(Hips, &Hips1)
-		|| !WorldToScreen(RightElbow, &RightElbow1)
-		|| !WorldToScreen(LeftElbow, &LeftElbow1)
-		|| !WorldToScreen(RightHand, &RightHand1)
-		|| !WorldToScreen(LeftHand, &LeftHand1)
-		|| !WorldToScreen(RightKnee, &RightKnee1)
-		|| !WorldToScreen(LeftKnee, &LeftKnee1)
-		|| !WorldToScreen(RightFoot, &RightFoot1)
-		|| !WorldToScreen(LeftFoot, &LeftFoot1)
-		|| !WorldToScreen(LeftKnee, &LeftKnee1)
-		|| !WorldToScreen(LeftKnee, &LeftKnee1))
+	FVector2D Head2D, Neck2D, Hips2D, RightElbow2D, LeftElbow2D, RightHand2D, LeftHand2D, RightKnee2D, LeftKnee2D, RightFoot2D, LeftFoot2D;
+	if (!WorldToScreen(Head, &Head2D)
+		|| !WorldToScreen(Neck, &Neck2D)
+		|| !WorldToScreen(Hips, &Hips2D)
+		|| !WorldToScreen(RightElbow, &RightElbow2D)
+		|| !WorldToScreen(LeftElbow, &LeftElbow2D)
+		|| !WorldToScreen(RightHand, &RightHand2D)
+		|| !WorldToScreen(LeftHand, &LeftHand2D)
+		|| !WorldToScreen(RightKnee, &RightKnee2D)
+		|| !WorldToScreen(LeftKnee, &LeftKnee2D)
+		|| !WorldToScreen(RightFoot, &RightFoot2D)
+		|| !WorldToScreen(LeftFoot, &LeftFoot2D)
+		|| !WorldToScreen(LeftKnee, &LeftKnee2D)
+		|| !WorldToScreen(LeftKnee, &LeftKnee2D))
 	{
 		return;
 	}
 
 	//Spine(headtocrotch)
-	hud->Canvas->K2_DrawLine(Head1, Neck1, 1.5f, color);
-	hud->Canvas->K2_DrawLine(Neck1, Hips1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Head2D, Neck2D, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Neck2D, Hips2D, 1.5f, color);
 	//Right arm
-	hud->Canvas->K2_DrawLine(Neck1, RightElbow1, 1.5f, color);
-	hud->Canvas->K2_DrawLine(RightElbow1, RightHand1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Neck2D, RightElbow2D, 1.5f, color);
+	hud->Canvas->K2_DrawLine(RightElbow2D, RightHand2D, 1.5f, color);
 	//Left arm
-	hud->Canvas->K2_DrawLine(Neck1, LeftElbow1, 1.5f, color);
-	hud->Canvas->K2_DrawLine(LeftElbow1, LeftHand1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Neck2D, LeftElbow2D, 1.5f, color);
+	hud->Canvas->K2_DrawLine(LeftElbow2D, LeftHand2D, 1.5f, color);
 	//Right leg
-	hud->Canvas->K2_DrawLine(Hips1, RightKnee1, 1.5f, color);
-	hud->Canvas->K2_DrawLine(RightKnee1, RightFoot1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Hips2D, RightKnee2D, 1.5f, color);
+	hud->Canvas->K2_DrawLine(RightKnee2D, RightFoot2D, 1.5f, color);
 	//Left leg
-	hud->Canvas->K2_DrawLine(Hips1, LeftKnee1, 1.5f, color);
-	hud->Canvas->K2_DrawLine(LeftKnee1, LeftFoot1, 1.5f, color);
+	hud->Canvas->K2_DrawLine(Hips2D, LeftKnee2D, 1.5f, color);
+	hud->Canvas->K2_DrawLine(LeftKnee2D, LeftFoot2D, 1.5f, color);
 }
 /*-------------------------------------------------------------------------------------------------*/
 
