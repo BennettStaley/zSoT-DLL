@@ -1,8 +1,7 @@
+__*`[UNDETECTED]`*__
 # zSoT-DLL
-[UNDETECTED]
+__BUILD: `Passing`__
 
-BUILD: Passing
+__Latest Versions__
+__[ DLL:__ v2.18 __| SDK:__ v2.0.11 __]__
 
-```Versions
-DLL: v2.18
-SDK: v2.0.11```
