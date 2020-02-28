@@ -65,7 +65,11 @@ public:
 	static void DrawLandmark(AHUD* hud, AActor* actor);
 	static void DrawDebug(AHUD* hud, AActor* actor);
 
+	/*-----------------------------------------------------
+			  -- New Features by Zanzo & Kiosk --
+	-----------------------------------------------------*/
 	static void DrawBones(AHUD* hud, AActor* actor, FLinearColor color);
+	/*------------------------------------[Zanzo/Kiosk]--*/
 
 	static void DrawHealthBar(AHUD* hud, UHealthComponent* healthComponent, FVector position, FVector2D size);
 	static void DrawBoundingBox(AHUD* hud, AActor* actor, FLinearColor color = FLinearColor(255,255,255));

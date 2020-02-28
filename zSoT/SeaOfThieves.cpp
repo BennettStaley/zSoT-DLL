@@ -15,7 +15,7 @@ using namespace std;
 
 typedef void(__thiscall* tPostRender)(UGameViewportClient* uObject, UCanvas* Canvas);
 tPostRender OriginalPostRender;
-const size_t PostRenderIndex = 88;
+const size_t PostRenderIndex = 88;		//--NOTE-- PostRenderIndex
 
 UAthenaGameViewportClient* AthenaGameViewportClient = nullptr;
 FGuid localPlayerCrewId;
