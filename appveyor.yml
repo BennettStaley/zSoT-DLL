@@ -1,61 +1,34 @@
 version: 1.0.{build}
-
 branches:
-
   only:
-
   - master
-
 image: Visual Studio 2019
-
 configuration: Release
-
 platform: x64
-
 clone_folder: c:\projects\zSoT-DLL\
-
+environment:
+  FTP_USER:
+    secure: 0gQrIpPXlb3X3qVG3hVcy2LgxWQBLD3DSR+Q0Mk4DK4=
 cache:
-
 - C:\projects\zsot-dll\bin\x64\Release\zSoT-SDK.lib
-
 - C:\projects\zsot-dll\x64\Release\zSoT.dll
-
 build:
-
   project: C:\projects\zSoT-DLL\zSoT-DLL.sln
-
-  publish_wap_octopus: true
-
   parallel: true
-
   verbosity: detailed
-
 artifacts:
-
 - path: C:\projects\zsot-dll\x64\Release\zSoT.dll
-
   name: zH4x-release
-
 deploy:
-
 - provider: FTP
-
   host: access811480541.webspace-data.io
-
-  protocol: ftp
-
-  username: $(FTP_USER)
-
+  protocol: sftp
+  username: u99588371-ftpdeploy
   password:
-
     secure: BJ0Sd8QF8zYJZ2e/2EkGdA==
-
   folder: zSoT
-
   artifact: zSoT.dll
-
-  active_mode: true
-
+  application: C:\projects\zsot-dll\x64\Release\zSoT.dll
+  active_mode: false
   beta: true
-
   debug: true
