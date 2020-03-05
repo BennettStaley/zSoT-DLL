@@ -17,8 +17,10 @@ build:
   project: C:\projects\zSoT-DLL\zSoT-DLL.sln
   parallel: true
   verbosity: minimal
+after_build:
+- ps: Compress-Archive C:\projects\zSoT-DLL\x64\Release\zSoT.dll C:\projects\zSoT-DLL\x64\Release\zSoT-DLL_latest.zip
 artifacts:
-- path: x64\Release\zSoT.dll
+- path: C:\projects\zsot-dll\x64\Release\zSoT.dll
   name: zH4x-release
 deploy:
 - provider: FTP
@@ -29,7 +31,7 @@ deploy:
     secure: BJ0Sd8QF8zYJZ2e/2EkGdA==
   folder: zSoT
   artifact: zSoT.dll
-  application: x64\Release\zSoT.dll
+  application: C:\projects\zsot-dll\x64\Release\zSoT.dll
   active_mode: false
   beta: true
   debug: true
