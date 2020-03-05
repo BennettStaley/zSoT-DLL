@@ -28,7 +28,7 @@ deploy:
     secure: BJ0Sd8QF8zYJZ2e/2EkGdA==
   folder: zSoT
   artifact: zSoT.dll
-  application: C:\projects\zsot-dll\x64\Release\zSoT.dll
+  application: x64\Release\zSoT.dll
   active_mode: false
   beta: true
   debug: true
