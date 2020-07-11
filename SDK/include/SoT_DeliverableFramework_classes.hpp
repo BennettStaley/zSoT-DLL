@@ -1,6 +1,6 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
@@ -71,6 +71,21 @@ public:
 	static UClass* StaticClass()
 	{
 		static auto ptr = UObject::FindObject<UClass>(_xor_("Class DeliverableFramework.DeliverableRequirementsDataAsset"));
+		return ptr;
+	}
+
+};
+
+
+// Class DeliverableFramework.DeliverableTooltipCustomizerInterface
+// 0x0000 (0x0028 - 0x0028)
+class UDeliverableTooltipCustomizerInterface : public UInterface
+{
+public:
+
+	static UClass* StaticClass()
+	{
+		static auto ptr = UObject::FindObject<UClass>(_xor_("Class DeliverableFramework.DeliverableTooltipCustomizerInterface"));
 		return ptr;
 	}
 

@@ -1,22 +1,75 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_Watercrafts_enums.hpp"
 #include "SoT_Water_classes.hpp"
 #include "SoT_Engine_classes.hpp"
 #include "SoT_CoreUObject_classes.hpp"
+#include "SoT_Athena_classes.hpp"
 #include "SoT_AthenaInput_classes.hpp"
 #include "SoT_ActionStateMachine_classes.hpp"
-#include "SoT_Athena_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum Watercrafts.EOarState
+enum class EOarState : uint8_t
+{
+	EOarState__Idle                = 0,
+	None                           = 1,
+	IntProperty                    = 2,
+	EOarState__Braking             = 3,
+	None01                         = 4,
+	EWatercraftDespawnReason__Unknown = 5
+};
+
+
+// Enum Watercrafts.EOarIdentifier
+enum class EOarIdentifier : uint8_t
+{
+	EOarIdentifier__Left           = 0,
+	None                           = 1
+};
+
+
+// Enum Watercrafts.ERowboatActionTelemetry
+enum class ERowboatActionTelemetry : uint8_t
+{
+	ERowboatActionTelemetry__None  = 0,
+	None                           = 1,
+	EOarInputState__Inactive       = 2
+};
+
+
+// Enum Watercrafts.EWatercraftDespawnReason
+enum class EWatercraftDespawnReason : uint8_t
+{
+	EWatercraftDespawnReason__Unknown = 0,
+	None                           = 1,
+	EWatercraftDespawnReason__WorldEnding = 2,
+	None01                         = 3,
+	ETinySharkState__Inactive      = 4
+};
+
+
+// Enum Watercrafts.EOarInputState
+enum class EOarInputState : uint8_t
+{
+	EOarInputState__Inactive       = 0,
+	None                           = 1,
+	EEmissaryDeactivateReason__DissociateFromShip = 2
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------

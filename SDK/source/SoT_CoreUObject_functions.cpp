@@ -1,90 +1,90 @@
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x8)
+#pragma pack(push, 0x8)
 #endif
 
-#include "SoT_CoreUObject_classes.hpp"
+#include "SoT_CoreUObject_parameters.hpp"
 
 namespace SDK
 {
-//---------------------------------------------------------------------------
-//Functions
-//---------------------------------------------------------------------------
+	//---------------------------------------------------------------------------
+	//Functions
+	//---------------------------------------------------------------------------
 
-std::string UObject::GetName() const
-{
-	std::string name(Name.GetName());
-	if (Name.Number > 0)
+	std::string UObject::GetName() const
 	{
-		name += '_' + std::to_string(Name.Number);
+		std::string name(Name.GetName());
+		if (Name.Number > 0)
+		{
+			name += '_' + std::to_string(Name.Number);
+		}
+
+		auto pos = name.rfind('/');
+		if (pos == std::string::npos)
+		{
+			return name;
+		}
+
+		return name.substr(pos + 1);
 	}
 
-	auto pos = name.rfind('/');
-	if (pos == std::string::npos)
+	std::string UObject::GetFullName() const
 	{
+		std::string name;
+
+		if (Class != nullptr)
+		{
+			std::string temp;
+			for (auto p = Outer; p; p = p->Outer)
+			{
+				temp = p->GetName() + "." + temp;
+			}
+
+			name = Class->GetName();
+			name += " ";
+			name += temp;
+			name += GetName();
+		}
+
 		return name;
 	}
-	
-	return name.substr(pos + 1);
-}
 
-std::string UObject::GetFullName() const
-{
-	std::string name;
-
-	if (Class != nullptr)
+	bool UObject::IsA(UClass* cmp) const
 	{
-		std::string temp;
-		for (auto p = Outer; p; p = p->Outer)
+		for (auto super = Class; super; super = static_cast<UClass*>(super->SuperField))
 		{
-			temp = p->GetName() + "." + temp;
+			if (super == cmp)
+			{
+				return true;
+			}
 		}
 
-		name = Class->GetName();
-		name += " ";
-		name += temp;
-		name += GetName();
+		return false;
 	}
 
-	return name;
-}
+	// Function CoreUObject.Object.ExecuteUbergraph
+	// (Event, Public, BlueprintEvent)
+	// Parameters:
+	// int                            EntryPoint                     (Parm, ZeroConstructor, IsPlainOldData)
 
-bool UObject::IsA(UClass* cmp) const
-{
-	for (auto super = Class; super; super = static_cast<UClass*>(super->SuperField))
+	void UObject::ExecuteUbergraph(int EntryPoint)
 	{
-		if (super == cmp)
+		static auto fn = UObject::FindObject<UFunction>(_xor_("Function CoreUObject.Object.ExecuteUbergraph"));
+
+		struct
 		{
-			return true;
-		}
+			int                            EntryPoint;
+		} params;
+
+		params.EntryPoint = EntryPoint;
+
+		UObject::ProcessEvent(fn, &params);
 	}
-
-	return false;
-}
-
-// Function CoreUObject.Object.ExecuteUbergraph
-// (Event, Public, BlueprintEvent)
-// Parameters:
-// int                            EntryPoint                     (Parm, ZeroConstructor, IsPlainOldData)
-
-void UObject::ExecuteUbergraph(int EntryPoint)
-{
-	static auto fn = UObject::FindObject<UFunction>(_xor_("Function CoreUObject.Object.ExecuteUbergraph"));
-
-	struct
-	{
-		int                            EntryPoint;
-	} params;
-
-	params.EntryPoint = EntryPoint;
-
-	UObject::ProcessEvent(fn, &params);
-}
 
 
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif

@@ -1,6 +1,6 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
@@ -113,7 +113,7 @@ public:
 
 
 // Class Kraken.EnvQueryGenerator_KrakenSpawnLocations
-// 0x0000 (0x0048 - 0x0048)
+// 0x0000 (0x0050 - 0x0050)
 class UEnvQueryGenerator_KrakenSpawnLocations : public UEnvQueryGenerator
 {
 public:
@@ -128,7 +128,7 @@ public:
 
 
 // Class Kraken.EnvQueryGenerator_KrakenTentacleSpawnLocations
-// 0x0000 (0x0048 - 0x0048)
+// 0x0000 (0x0050 - 0x0050)
 class UEnvQueryGenerator_KrakenTentacleSpawnLocations : public UEnvQueryGenerator
 {
 public:
@@ -316,7 +316,8 @@ public:
 class UKrakenAnimatedTentacleStateAnimationsDataAsset : public UDataAsset
 {
 public:
-	TAssetPtr<class UKrakenAnimatedTentacleAnimationMappingDataAsset> MappingAssetReference;                                    // 0x0028(0x0020) (Edit)
+	TAssetPtr<class UKrakenAnimatedTentacleAnimationMappingDataAsset> MappingAssetReference;                                    // 0x0028(0x001C) (Edit)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0028(0x0004) FIX WRONG TYPE SIZE OF PREVIOUS PROPERTY
 	TArray<struct FKrakenAnimatedTentacleStateAnimationMapping> States;                                                   // 0x0048(0x0010) (Edit, ZeroConstructor)
 
 	static UClass* StaticClass()
@@ -449,12 +450,12 @@ public:
 
 
 // Class Kraken.KrakenShipWrappingBehaviourParamsDataAsset
-// 0x03F8 (0x0420 - 0x0028)
+// 0x0418 (0x0440 - 0x0028)
 class UKrakenShipWrappingBehaviourParamsDataAsset : public UDataAsset
 {
 public:
 	unsigned char                                      UnknownData00[0x8];                                       // 0x0028(0x0008) MISSED OFFSET
-	struct FKrakenShipWrappingBehaviourParams          Params;                                                   // 0x0030(0x03F0) (Edit, DisableEditOnInstance)
+	struct FKrakenShipWrappingBehaviourParams          Params;                                                   // 0x0030(0x0410) (Edit, DisableEditOnInstance)
 
 	static UClass* StaticClass()
 	{
@@ -466,14 +467,14 @@ public:
 
 
 // Class Kraken.KrakenShipWrappingKnockbackRegionComponent
-// 0x0070 (0x0300 - 0x0290)
+// 0x0080 (0x0310 - 0x0290)
 class UKrakenShipWrappingKnockbackRegionComponent : public USceneComponent
 {
 public:
 	struct FVector                                     KnockbackDirection;                                       // 0x0290(0x000C) (Edit, ZeroConstructor, IsPlainOldData)
 	float                                              KnockbackTime;                                            // 0x029C(0x0004) (Edit, ZeroConstructor, IsPlainOldData)
-	struct FKnockBackInfo                              KnockbackParams;                                          // 0x02A0(0x0034) (Edit)
-	unsigned char                                      UnknownData00[0x2C];                                      // 0x02D4(0x002C) MISSED OFFSET
+	struct FKnockBackInfo                              KnockbackParams;                                          // 0x02A0(0x0044) (Edit)
+	unsigned char                                      UnknownData00[0x2C];                                      // 0x02E4(0x002C) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{

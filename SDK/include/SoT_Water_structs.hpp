@@ -1,19 +1,61 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_Water_enums.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_Engine_classes.hpp"
 #include "SoT_Maths_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum Water.EWaterQueryResult
+enum class EWaterQueryResult : uint8_t
+{
+	EWaterQueryResult__Success     = 0,
+	None                           = 1,
+	EWaterQueryResult__EWaterQueryResult_MAX = 2,
+	EAttitudeTowardActor__Friendly = 3
+};
+
+
+// Enum Water.EBuoyancyDragSampleType
+enum class EBuoyancyDragSampleType : uint8_t
+{
+	EBuoyancyDragSampleType__Spherical = 0,
+	None                           = 1
+};
+
+
+// Enum Water.EBuoyancySampleType
+enum class EBuoyancySampleType : uint8_t
+{
+	EBuoyancySampleType__Spherical = 0,
+	None                           = 1,
+	EShipAlignmentType__None       = 2
+};
+
+
+// Enum Water.EWaterSplashProbeType
+enum class EWaterSplashProbeType : uint8_t
+{
+	EWaterSplashProbeType__ThresholdedRateOfChange = 0,
+	None                           = 1,
+	EWaterSplashProbeType__Continuous = 2,
+	None01                         = 3,
+	EAimSensitivitySettingCategory__Invalid = 4
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -25,14 +67,6 @@ struct FWaterInformation
 	class UClass*                                      WaterType;                                                // 0x0000(0x0008) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Config, IsPlainOldData)
 	bool                                               CanSwim;                                                  // 0x0008(0x0001) (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Config, IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0009(0x0007) MISSED OFFSET
-};
-
-// ScriptStruct Water.FFTWaterPerformanceCountData
-// 0x0008
-struct FFFTWaterPerformanceCountData
-{
-	int                                                WaterHeightQueryCallCount;                                // 0x0000(0x0004) (Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData)
-	int                                                WaterInformationQueryCallCount;                           // 0x0004(0x0004) (Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData)
 };
 
 // ScriptStruct Water.BuoyancyVolumeSample

@@ -1,21 +1,43 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_Tales_enums.hpp"
 #include "SoT_Engine_classes.hpp"
 #include "SoT_CoreUObject_classes.hpp"
+#include "SoT_PrioritisedPrompts_classes.hpp"
 #include "SoT_MerchantContracts_classes.hpp"
 #include "SoT_Athena_classes.hpp"
-#include "SoT_PrioritisedPrompts_classes.hpp"
+#include "SoT_EmissaryFramework_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum Tales.ETaleQuestStepBeginMode
+enum class ETaleQuestStepBeginMode : uint8_t
+{
+	ETaleQuestStepBeginMode__Cold  = 0,
+	None                           = 1
+};
+
+
+// Enum Tales.ETaleQuestStepState
+enum class ETaleQuestStepState : uint8_t
+{
+	ETaleQuestStepState__Inactive  = 0,
+	None                           = 1,
+	ETaleQuestStepState__ETaleQuestStepState_MAX = 2
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -80,6 +102,13 @@ struct FQuestVariablePrioritisedPrompt : public FQuestVariable
 struct FQuestVariableMerchantItem : public FQuestVariable
 {
 
+};
+
+// ScriptStruct Tales.ParticpantToolGroup
+// 0x0020
+struct FParticpantToolGroup
+{
+	unsigned char                                      UnknownData00[0x20];                                      // 0x0000(0x0020) MISSED OFFSET
 };
 
 // ScriptStruct Tales.StepBountyTargetDesc

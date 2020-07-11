@@ -1,25 +1,75 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_Pets_enums.hpp"
 #include "SoT_Interaction_classes.hpp"
 #include "SoT_Athena_classes.hpp"
 #include "SoT_AthenaAI_classes.hpp"
 #include "SoT_Engine_classes.hpp"
-#include "AthenaCommons.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_AIModule_classes.hpp"
-#include "SoT_ActionStateMachine_classes.hpp"
 #include "SoT_RareAudio_classes.hpp"
+#include "SoT_ActionStateMachine_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum Pets.EPetDangerHearingResponseType
+enum class EPetDangerHearingResponseType : uint8_t
+{
+	EPetDangerHearingResponseType__RunAway = 0,
+	None                           = 1,
+	EPetDangerHearingResponseType__MAX = 2,
+	None01                         = 3
+};
+
+
+// Enum Pets.EPetDangerHearingTarget
+enum class EPetDangerHearingTarget : uint8_t
+{
+	EPetDangerHearingTarget__None  = 0,
+	None                           = 1,
+	EPetDangerHearingTarget__EPetDangerHearingTarget_MAX = 2,
+	NameProperty                   = 3
+};
+
+
+// Enum Pets.EHangoutRotationMode
+enum class EHangoutRotationMode : uint8_t
+{
+	EHangoutRotationMode__Match    = 0,
+	None                           = 1
+};
+
+
+// Enum Pets.EWieldablePetDropRequestReason
+enum class EWieldablePetDropRequestReason : uint8_t
+{
+	EWieldablePetDropRequestReason__None = 0,
+	None                           = 1,
+	EPetFeedingReactionType__None  = 2
+};
+
+
+// Enum Pets.EPetFeedingReactionType
+enum class EPetFeedingReactionType : uint8_t
+{
+	EPetFeedingReactionType__None  = 0,
+	None                           = 1,
+	IntProperty                    = 2,
+	EMastType__Front               = 3
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -200,6 +250,15 @@ struct FWieldablePetHungerAnimationData
 	float                                              AnimTimeout;                                              // 0x0004(0x0004) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
 };
 
+// ScriptStruct Pets.PetTurnToFaceData
+// 0x0020
+struct FPetTurnToFaceData
+{
+	struct FQuat                                       EndRotation;                                              // 0x0000(0x0010) (IsPlainOldData)
+	float                                              RotationTime;                                             // 0x0010(0x0004) (ZeroConstructor, IsPlainOldData)
+	unsigned char                                      UnknownData00[0xC];                                       // 0x0014(0x000C) MISSED OFFSET
+};
+
 // ScriptStruct Pets.EventWieldablePetPendingDrop
 // 0x0001
 struct FEventWieldablePetPendingDrop
@@ -351,17 +410,19 @@ struct FEventPetReactBegun
 };
 
 // ScriptStruct Pets.EventPetReactCancellation
-// 0x0008
+// 0x0010
 struct FEventPetReactCancellation
 {
-	struct FName                                       ReactId;                                                  // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	class AActor*                                      ReactSource;                                              // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	struct FName                                       ReactId;                                                  // 0x0008(0x0008) (ZeroConstructor, IsPlainOldData)
 };
 
 // ScriptStruct Pets.EventPetReactRequest
-// 0x0008
+// 0x0010
 struct FEventPetReactRequest
 {
-	struct FName                                       ReactId;                                                  // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	class AActor*                                      ReactSource;                                              // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	struct FName                                       ReactId;                                                  // 0x0008(0x0008) (ZeroConstructor, IsPlainOldData)
 };
 
 // ScriptStruct Pets.RespawnPetEvent

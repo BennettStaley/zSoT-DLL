@@ -1,17 +1,233 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_SlateCore_enums.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum SlateCore.EFontHinting
+enum class EFontHinting : uint8_t
+{
+	EFontHinting__Default          = 0,
+	None                           = 1,
+	IntProperty                    = 2,
+	EFontHinting__None             = 3,
+	None01                         = 4,
+	EProgressBarFillType__LeftToRight = 5
+};
+
+
+// Enum SlateCore.ESelectInfo
+enum class ESelectInfo : uint8_t
+{
+	ESelectInfo__OnKeyPress        = 0,
+	None                           = 1,
+	ESelectInfo__ESelectInfo_MAX   = 2
+};
+
+
+// Enum SlateCore.ETextCommit
+enum class ETextCommit : uint8_t
+{
+	ETextCommit__Default           = 0,
+	None                           = 1,
+	ETextCommit__ETextCommit_MAX   = 2,
+	EAxis__None                    = 3
+};
+
+
+// Enum SlateCore.EScrollDirection
+enum class EScrollDirection : uint8_t
+{
+	Scroll_Down                    = 0,
+	None                           = 1
+};
+
+
+// Enum SlateCore.EOrientation
+enum class EOrientation : uint8_t
+{
+	Orient_Horizontal              = 0,
+	None                           = 1
+};
+
+
+// Enum SlateCore.EMenuPlacement
+enum class EMenuPlacement : uint8_t
+{
+	MenuPlacement_BelowAnchor      = 0,
+	None                           = 1,
+	MenuPlacement_MenuRight        = 2,
+	None01                         = 3,
+	MenuPlacement_MAX              = 4,
+	ESimplygonTextureResolution__TextureResolution = 5
+};
+
+
+// Enum SlateCore.EVerticalAlignment
+enum class EVerticalAlignment : uint8_t
+{
+	VAlign_Fill                    = 0,
+	None                           = 1,
+	VAlign_MAX                     = 2,
+	HAlign_Fill                    = 3
+};
+
+
+// Enum SlateCore.EHorizontalAlignment
+enum class EHorizontalAlignment : uint8_t
+{
+	HAlign_Fill                    = 0,
+	None                           = 1,
+	HAlign_MAX                     = 2,
+	ESlateBrushTileType__NoTile    = 3
+};
+
+
+// Enum SlateCore.EUINavigation
+enum class EUINavigation : uint8_t
+{
+	EUINavigation__Left            = 0,
+	None                           = 1,
+	EUINavigation__Next            = 2,
+	None01                         = 3,
+	EUINavigation__EUINavigation_MAX = 4,
+	MenuPlacement_BelowAnchor      = 5,
+	None02                         = 6
+};
+
+
+// Enum SlateCore.EButtonPressMethod
+enum class EButtonPressMethod : uint8_t
+{
+	EButtonPressMethod__DownAndUp  = 0,
+	None                           = 1,
+	EButtonTouchMethod__DownAndUp  = 2
+};
+
+
+// Enum SlateCore.EButtonTouchMethod
+enum class EButtonTouchMethod : uint8_t
+{
+	EButtonTouchMethod__DownAndUp  = 0,
+	None                           = 1
+};
+
+
+// Enum SlateCore.EButtonClickMethod
+enum class EButtonClickMethod : uint8_t
+{
+	EButtonClickMethod__DownAndUp  = 0,
+	None                           = 1,
+	EButtonClickMethod__EButtonClickMethod_MAX = 2
+};
+
+
+// Enum SlateCore.ESlateColorStylingMode
+enum class ESlateColorStylingMode : uint8_t
+{
+	ESlateColorStylingMode__UseColor_Specified = 0,
+	None                           = 1,
+	ESlateColorStylingMode__UseColor_MAX = 2,
+	VAlign_Fill                    = 3
+};
+
+
+// Enum SlateCore.ESlateBrushImageType
+enum class ESlateBrushImageType : uint8_t
+{
+	ESlateBrushImageType__NoImage  = 0,
+	None                           = 1,
+	ESlateCheckBoxType__CheckBox   = 2
+};
+
+
+// Enum SlateCore.ESlateBrushMirrorType
+enum class ESlateBrushMirrorType : uint8_t
+{
+	ESlateBrushMirrorType__NoMirror = 0,
+	None                           = 1,
+	ESlateBrushMirrorType__ESlateBrushMirrorType_MAX = 2,
+	ESlateColorStylingMode__UseColor_Specified = 3
+};
+
+
+// Enum SlateCore.ESlateBrushTileType
+enum class ESlateBrushTileType : uint8_t
+{
+	ESlateBrushTileType__NoTile    = 0,
+	None                           = 1,
+	ESlateBrushTileType__ESlateBrushTileType_MAX = 2
+};
+
+
+// Enum SlateCore.ESlateBrushDrawType
+enum class ESlateBrushDrawType : uint8_t
+{
+	ESlateBrushDrawType__NoDrawType = 0,
+	None                           = 1,
+	ESlateBrushDrawType__ESlateBrushDrawType_MAX = 2,
+	ESlateBrushMirrorType__NoMirror = 3
+};
+
+
+// Enum SlateCore.ECheckBoxState
+enum class ECheckBoxState : uint8_t
+{
+	ECheckBoxState__Unchecked      = 0,
+	None                           = 1,
+	ESlateBrushImageType__NoImage  = 2
+};
+
+
+// Enum SlateCore.ESlateCheckBoxType
+enum class ESlateCheckBoxType : uint8_t
+{
+	ESlateCheckBoxType__CheckBox   = 0,
+	None                           = 1
+};
+
+
+// Enum SlateCore.EConsumeMouseWheel
+enum class EConsumeMouseWheel : uint8_t
+{
+	EConsumeMouseWheel__WhenScrollingPossible = 0,
+	None                           = 1
+};
+
+
+// Enum SlateCore.EFocusCause
+enum class EFocusCause : uint8_t
+{
+	EFocusCause__Mouse             = 0,
+	None                           = 1,
+	EFocusCause__OtherWidgetLostFocus = 2,
+	None01                         = 3,
+	EAxisOption__X                 = 4
+};
+
+
+// Enum SlateCore.EUINavigationRule
+enum class EUINavigationRule : uint8_t
+{
+	EUINavigationRule__Escape      = 0,
+	None                           = 1,
+	EUINavigationRule__Custom      = 2,
+	None01                         = 3
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -66,10 +282,10 @@ struct FInputEvent
 };
 
 // ScriptStruct SlateCore.PointerEvent
-// 0x0058 (0x0080 - 0x0028)
+// 0x0060 (0x0088 - 0x0028)
 struct FPointerEvent : public FInputEvent
 {
-	unsigned char                                      UnknownData00[0x58];                                      // 0x0028(0x0058) MISSED OFFSET
+	unsigned char                                      UnknownData00[0x60];                                      // 0x0028(0x0060) MISSED OFFSET
 };
 
 // ScriptStruct SlateCore.Geometry

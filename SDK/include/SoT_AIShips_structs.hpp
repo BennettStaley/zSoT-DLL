@@ -1,13 +1,12 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_AIShips_enums.hpp"
 #include "SoT_AIModule_classes.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_Engine_classes.hpp"
@@ -18,6 +17,76 @@
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum AIShips.EAIShipEncounterType
+enum class EAIShipEncounterType : uint8_t
+{
+	EAIShipEncounterType__Battle   = 0,
+	None                           = 1,
+	EAIShipEncounterType__EAIShipEncounterType_MAX = 2,
+	EKrakenBehaviourType__Idle     = 3
+};
+
+
+// Enum AIShips.ECannonballIconType
+enum class ECannonballIconType : uint8_t
+{
+	ECannonballIconType__Normal    = 0,
+	None                           = 1,
+	ECannonballIconType__Boogie    = 2,
+	None01                         = 3,
+	ECannonballIconType__Rigging   = 4,
+	None02                         = 5,
+	ECannonballIconType__Snooze    = 6,
+	None03                         = 7,
+	TextProperty                   = 8,
+	EIslandType__Resource          = 9,
+	None04                         = 10,
+	EIslandType__Large             = 11
+};
+
+
+// Enum AIShips.ESkellyFormIconType
+enum class ESkellyFormIconType : uint8_t
+{
+	ESkellyFormIconType__Normal    = 0,
+	None                           = 1,
+	ESkellyFormIconType__None      = 2,
+	None01                         = 3,
+	EAddLinkResult__Success_Set    = 4
+};
+
+
+// Enum AIShips.EAIShipType
+enum class EAIShipType : uint8_t
+{
+	EAIShipType__Normal            = 0,
+	None                           = 1
+};
+
+
+// Enum AIShips.EAIShipPlayerTrackerType
+enum class EAIShipPlayerTrackerType : uint8_t
+{
+	DefaultRadiusTracker           = 0,
+	None                           = 1,
+	EAIShipPlayerTrackerType_MAX   = 2,
+	EAIShipEncounterType__Battle   = 3
+};
+
+
+// Enum AIShips.EAIShipDestructionReason
+enum class EAIShipDestructionReason : uint8_t
+{
+	EAIShipDestructionReason__Defeated = 0,
+	None                           = 1
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -351,7 +420,7 @@ struct FCursedSailsBattleParams
 // 0x0010
 struct FAIShipDespawnedEvent
 {
-	class AShip*                                       Ship;                                                     // 0x0000(0x0008) (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData)
+	class AActor*                                      Ship;                                                     // 0x0000(0x0008) (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData)
 	TEnumAsByte<EAIShipDestructionReason>              ShipDestructionReason;                                    // 0x0008(0x0001) (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData)
 	unsigned char                                      UnknownData00[0x7];                                       // 0x0009(0x0007) MISSED OFFSET
 };

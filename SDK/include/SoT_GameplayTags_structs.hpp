@@ -1,18 +1,51 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_GameplayTags_enums.hpp"
 #include "SoT_Engine_classes.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum GameplayTags.EGameplayTagQueryExprType
+enum class EGameplayTagQueryExprType : uint8_t
+{
+	EGameplayTagQueryExprType__Undefined = 0,
+	None                           = 1,
+	EGameplayTagQueryExprType__AnyExprMatch = 2,
+	None01                         = 3,
+	NameProperty                   = 4,
+	EPathFollowingResult__Success  = 5,
+	None02                         = 6
+};
+
+
+// Enum GameplayTags.EGameplayContainerMatchType
+enum class EGameplayContainerMatchType : uint8_t
+{
+	EGameplayContainerMatchType__Any = 0,
+	None                           = 1
+};
+
+
+// Enum GameplayTags.EGameplayTagMatchType
+enum class EGameplayTagMatchType : uint8_t
+{
+	EGameplayTagMatchType__Explicit = 0,
+	None                           = 1
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
@@ -186,6 +186,21 @@ public:
 
 
 	static class UCompositeInputHandler* MakeCompositeInputHandler();
+};
+
+
+// Class AthenaInput.MockInputHandlerCharacter
+// 0x0000 (0x0610 - 0x0610)
+class AMockInputHandlerCharacter : public ACharacter
+{
+public:
+
+	static UClass* StaticClass()
+	{
+		static auto ptr = UObject::FindObject<UClass>(_xor_("Class AthenaInput.MockInputHandlerCharacter"));
+		return ptr;
+	}
+
 };
 
 

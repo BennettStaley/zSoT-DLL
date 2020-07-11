@@ -1,13 +1,12 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_Kraken_enums.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_AIModule_classes.hpp"
 #include "SoT_Engine_classes.hpp"
@@ -16,6 +15,79 @@
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum Kraken.EKrakenBehaviourType
+enum class EKrakenBehaviourType : uint8_t
+{
+	EKrakenBehaviourType__Idle     = 0,
+	None                           = 1,
+	EKrakenBehaviourType__EKrakenBehaviourType_MAX = 2,
+	ETinySharkActiveState__TrackingTarget = 3
+};
+
+
+// Enum Kraken.EKrakenShipWrappingTentacleState
+enum class EKrakenShipWrappingTentacleState : uint8_t
+{
+	EKrakenShipWrappingTentacleState__Dormant = 0,
+	None                           = 1,
+	EKrakenShipWrappingTentacleState__ShakeAttack = 2,
+	None01                         = 3,
+	EKrakenShipWrappingTentacleState__EKrakenShipWrappingTentacleState_MAX = 4,
+	AISpawnRequestResult__Incomplete = 5,
+	None02                         = 6
+};
+
+
+// Enum Kraken.EKrakenDynamicsStateEvent
+enum class EKrakenDynamicsStateEvent : uint8_t
+{
+	EKrakenDynamicsStateEvent__Damage = 0,
+	None                           = 1
+};
+
+
+// Enum Kraken.EKrakenEQSLockReason
+enum class EKrakenEQSLockReason : uint8_t
+{
+	EKrakenEQSLockReason__Spawning = 0,
+	None                           = 1
+};
+
+
+// Enum Kraken.EKrakenDespawnReason
+enum class EKrakenDespawnReason : uint8_t
+{
+	EKrakenDespawnReason__Invalid  = 0,
+	None                           = 1,
+	EKrakenDespawnReason__Dismissed = 2,
+	None01                         = 3,
+	EFishingMiniGamePlayerInputDirection__None = 4
+};
+
+
+// Enum Kraken.EKrakenState
+enum class EKrakenState : uint8_t
+{
+	EKrakenState__Spawning         = 0,
+	None                           = 1,
+	EKrakenTentacleBehaviourDamageActions__StayActive = 2
+};
+
+
+// Enum Kraken.EKrakenTentacleBehaviourDamageActions
+enum class EKrakenTentacleBehaviourDamageActions : uint8_t
+{
+	EKrakenTentacleBehaviourDamageActions__StayActive = 0,
+	None                           = 1,
+	EAIShipType__Normal            = 2
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -480,14 +552,14 @@ struct FKrakenShipWrappingBehaviourShakeAttackParams
 };
 
 // ScriptStruct Kraken.KrakenShipWrappingBehaviourHeavyAttackParams
-// 0x00A0
+// 0x00C0
 struct FKrakenShipWrappingBehaviourHeavyAttackParams
 {
 	struct FWeightedProbabilityRangeOfRanges           AttackDuration;                                           // 0x0000(0x0030) (Edit, DisableEditOnInstance)
 	float                                              ChanceOfEnteringHeavyAttack;                              // 0x0030(0x0004) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
-	struct FKnockBackInfo                              ExteriorKnockbackParams;                                  // 0x0034(0x0034) (Edit, DisableEditOnInstance)
-	struct FKnockBackInfo                              InteriorKnockbackParams;                                  // 0x0068(0x0034) (Edit, DisableEditOnInstance)
-	unsigned char                                      UnknownData00[0x4];                                       // 0x009C(0x0004) MISSED OFFSET
+	struct FKnockBackInfo                              ExteriorKnockbackParams;                                  // 0x0034(0x0044) (Edit, DisableEditOnInstance)
+	struct FKnockBackInfo                              InteriorKnockbackParams;                                  // 0x0078(0x0044) (Edit, DisableEditOnInstance)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x00BC(0x0004) MISSED OFFSET
 };
 
 // ScriptStruct Kraken.KrakenShipWrappingBehaviourDamageParams
@@ -511,7 +583,7 @@ struct FKrakenShipWrappingBehaviourHealthParams
 };
 
 // ScriptStruct Kraken.KrakenShipWrappingBehaviourParams
-// 0x03F0
+// 0x0410
 struct FKrakenShipWrappingBehaviourParams
 {
 	class UClass*                                      ShipSize;                                                 // 0x0000(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
@@ -520,10 +592,10 @@ struct FKrakenShipWrappingBehaviourParams
 	struct FKrakenShipWrappingBehaviourWrapParams      WrapParams;                                               // 0x00B0(0x0140) (Edit, DisableEditOnInstance)
 	struct FKrakenShipWrappingBehaviourTentacleHeadParams TentacleHeadParams;                                       // 0x01F0(0x0048) (Edit, DisableEditOnInstance)
 	struct FKrakenShipWrappingBehaviourShakeAttackParams ShakeAttackParams;                                        // 0x0238(0x0068) (Edit, DisableEditOnInstance)
-	struct FKrakenShipWrappingBehaviourHeavyAttackParams HeavyAttackParams;                                        // 0x02A0(0x00A0) (Edit, DisableEditOnInstance)
-	struct FKrakenShipWrappingBehaviourDamageParams    DamageParams;                                             // 0x0340(0x0070) (Edit, DisableEditOnInstance)
-	struct FKrakenShipWrappingBehaviourHealthParams    HealthParams;                                             // 0x03B0(0x0038) (Edit, DisableEditOnInstance)
-	unsigned char                                      UnknownData01[0x8];                                       // 0x03E8(0x0008) MISSED OFFSET
+	struct FKrakenShipWrappingBehaviourHeavyAttackParams HeavyAttackParams;                                        // 0x02A0(0x00C0) (Edit, DisableEditOnInstance)
+	struct FKrakenShipWrappingBehaviourDamageParams    DamageParams;                                             // 0x0360(0x0070) (Edit, DisableEditOnInstance)
+	struct FKrakenShipWrappingBehaviourHealthParams    HealthParams;                                             // 0x03D0(0x0038) (Edit, DisableEditOnInstance)
+	unsigned char                                      UnknownData01[0x8];                                       // 0x0408(0x0008) MISSED OFFSET
 };
 
 // ScriptStruct Kraken.KrakenWorldSettingsParams

@@ -1,18 +1,30 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_ShipDamage_enums.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_Athena_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum ShipDamage.EHullDamageDeck
+enum class EHullDamageDeck : uint8_t
+{
+	EHullDamageDeck__Bottom        = 0,
+	None                           = 1
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -29,7 +41,8 @@ struct FDistanceAndLevelOfDamage
 // 0x0030
 struct FShipPartLevelsOfDamage
 {
-	TAssetPtr<class UClass>                            ActorClass;                                               // 0x0000(0x0020) (Edit)
+	TAssetPtr<class UClass>                            ActorClass;                                               // 0x0000(0x001C) (Edit)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0000(0x0004) FIX WRONG TYPE SIZE OF PREVIOUS PROPERTY
 	TArray<struct FDistanceAndLevelOfDamage>           DamagePerDistance;                                        // 0x0020(0x0010) (Edit, ZeroConstructor)
 };
 
@@ -81,10 +94,11 @@ struct FDamageZoneDamageLevelChanged
 };
 
 // ScriptStruct ShipDamage.AppliedDamageToShipEvent
-// 0x0008
+// 0x0010
 struct FAppliedDamageToShipEvent
 {
 	class UClass*                                      ShipType;                                                 // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	class AActor*                                      Ship;                                                     // 0x0008(0x0008) (ZeroConstructor, IsPlainOldData)
 };
 
 }

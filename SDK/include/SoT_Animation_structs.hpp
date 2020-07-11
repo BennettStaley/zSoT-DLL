@@ -1,19 +1,52 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
-#include "SoT_Animation_enums.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_Engine_classes.hpp"
 #include "SoT_Athena_classes.hpp"
 
 namespace SDK
 {
+//---------------------------------------------------------------------------
+//Enums
+//---------------------------------------------------------------------------
+
+// Enum Animation.ECharacterIKLimb
+enum class ECharacterIKLimb : uint8_t
+{
+	ECharacterIKLimb__None         = 0,
+	None                           = 1,
+	IntProperty                    = 2,
+	ECharacterIKLimb__RightFoot    = 3,
+	None01                         = 4,
+	CameraFacing_NoneUP            = 5
+};
+
+
+// Enum Animation.ELimbIKSpace
+enum class ELimbIKSpace : uint8_t
+{
+	ELimbIKSpace__Local            = 0,
+	None                           = 1,
+	EDockableSocketOverlapUpdates__AllowUpdate = 2
+};
+
+
+// Enum Animation.EDockableSocketOverlapUpdates
+enum class EDockableSocketOverlapUpdates : uint8_t
+{
+	EDockableSocketOverlapUpdates__AllowUpdate = 0,
+	None                           = 1
+};
+
+
+
 //---------------------------------------------------------------------------
 //Script Structs
 //---------------------------------------------------------------------------
@@ -77,7 +110,8 @@ struct FAnimationDataStoreAssetEntry
 struct FAnimationDataStoreAssetWeakReferenceEntry
 {
 	class UClass*                                      AnimDataId;                                               // 0x0000(0x0008) (Edit, ZeroConstructor, IsPlainOldData)
-	TAssetPtr<class UClass>                            AnimData;                                                 // 0x0008(0x0020) (Edit)
+	TAssetPtr<class UClass>                            AnimData;                                                 // 0x0008(0x001C) (Edit)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0008(0x0004) FIX WRONG TYPE SIZE OF PREVIOUS PROPERTY
 };
 
 // ScriptStruct Animation.CosmeticItems
@@ -85,6 +119,15 @@ struct FAnimationDataStoreAssetWeakReferenceEntry
 struct FCosmeticItems
 {
 	TArray<class AActor*>                              CosmeticItemArray;                                        // 0x0000(0x0010) (ZeroConstructor)
+};
+
+// ScriptStruct Animation.CosmeticItemAnimationSetLoopData
+// 0x0018
+struct FCosmeticItemAnimationSetLoopData
+{
+	class UAnimSequenceBase*                           Into;                                                     // 0x0000(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
+	class UAnimSequenceBase*                           Loop;                                                     // 0x0008(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
+	struct FName                                       LoopSyncGroup;                                            // 0x0010(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
 };
 
 // ScriptStruct Animation.DockableInfo
@@ -134,6 +177,15 @@ struct FTransformBlendCurve
 	unsigned char                                      UnknownData04[0x30];                                      // 0x04D0(0x0030) MISSED OFFSET
 };
 
+// ScriptStruct Animation.WeightedAnimationData
+// 0x0018
+struct FWeightedAnimationData
+{
+	struct FStringAssetReference                       Animation;                                                // 0x0000(0x0010) (Edit, ZeroConstructor, DisableEditOnInstance)
+	float                                              Weighting;                                                // 0x0010(0x0004) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0014(0x0004) MISSED OFFSET
+};
+
 // ScriptStruct Animation.EventCosmeticItemAttachmentSwitched
 // 0x0008
 struct FEventCosmeticItemAttachmentSwitched
@@ -142,10 +194,11 @@ struct FEventCosmeticItemAttachmentSwitched
 };
 
 // ScriptStruct Animation.EventCosmeticItemSpawned
-// 0x0008
+// 0x0010
 struct FEventCosmeticItemSpawned
 {
 	class AActor*                                      Owner;                                                    // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	class UCosmeticItemAnimationSetDataAsset*          CosmeticData;                                             // 0x0008(0x0008) (ZeroConstructor, IsPlainOldData)
 };
 
 // ScriptStruct Animation.EventDockableObjectDestroyed
@@ -190,11 +243,32 @@ struct FHitReactionAnimationState
 	unsigned char                                      UnknownData00[0x1E];                                      // 0x000A(0x001E) MISSED OFFSET
 };
 
+// ScriptStruct Animation.AnimNode_WeightedLoadOnDemandSquencePlayer
+// 0x0028 (0x0068 - 0x0040)
+struct FAnimNode_WeightedLoadOnDemandSquencePlayer : public FAnimNode_AssetPlayerBase
+{
+	float                                              PlayRate;                                                 // 0x0040(0x0004) (Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData)
+	unsigned char                                      UnknownData00[0x4];                                       // 0x0044(0x0004) MISSED OFFSET
+	class UWeightedAnimSequenceLoadOnDemand*           WeightedAnimSequenceLoadOnDemand;                         // 0x0048(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
+	int                                                GroupIndex;                                               // 0x0050(0x0004) (ZeroConstructor, IsPlainOldData)
+	TEnumAsByte<EAnimGroupRole>                        GroupRole;                                                // 0x0054(0x0001) (ZeroConstructor, IsPlainOldData)
+	unsigned char                                      UnknownData01[0x3];                                       // 0x0055(0x0003) MISSED OFFSET
+	class UAnimSequence*                               CurrentSequence;                                          // 0x0058(0x0008) (ZeroConstructor, IsPlainOldData)
+	class UAnimSequence*                               NextSequence;                                             // 0x0060(0x0008) (ZeroConstructor, IsPlainOldData)
+};
+
 // ScriptStruct Animation.EventPreviewCharacterAnimationRequest
 // 0x0008
 struct FEventPreviewCharacterAnimationRequest
 {
 	class UAnimationAsset*                             AnimationToPlay;                                          // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+};
+
+// ScriptStruct Animation.AnimationStateCompleteEvent
+// 0x0008
+struct FAnimationStateCompleteEvent
+{
+	class UClass*                                      CompletedStateId;                                         // 0x0000(0x0008) (Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData)
 };
 
 // ScriptStruct Animation.WeightedAnimationTimeout

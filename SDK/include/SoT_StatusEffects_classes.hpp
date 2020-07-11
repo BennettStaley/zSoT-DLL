@@ -1,6 +1,6 @@
 #pragma once
 
-// Sea of Thieves (2.0) SDK
+// Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
 	#pragma pack(push, 0x8)
@@ -77,15 +77,14 @@ public:
 
 
 // Class StatusEffects.StatusEffectOverlapZone
-// 0x0028 (0x0438 - 0x0410)
+// 0x0020 (0x0430 - 0x0410)
 class AStatusEffectOverlapZone : public AActor
 {
 public:
-	class UDebugStatusEffectOverlapZoneVisualizerComponent* DebugVisualizerComponent;                                 // 0x0410(0x0008) (ExportObject, ZeroConstructor, Transient, InstancedReference, IsPlainOldData)
-	class UBoxComponent*                               CollisionMesh;                                            // 0x0418(0x0008) (Edit, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData)
-	TArray<struct FDelayedStatusEffect>                StatusesToApplyOnOverlap;                                 // 0x0420(0x0010) (Edit, ZeroConstructor)
-	bool                                               StartActive;                                              // 0x0430(0x0001) (Edit, ZeroConstructor, IsPlainOldData)
-	unsigned char                                      UnknownData00[0x7];                                       // 0x0431(0x0007) MISSED OFFSET
+	class UBoxComponent*                               CollisionMesh;                                            // 0x0410(0x0008) (Edit, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData)
+	TArray<struct FDelayedStatusEffect>                StatusesToApplyOnOverlap;                                 // 0x0418(0x0010) (Edit, ZeroConstructor)
+	bool                                               StartActive;                                              // 0x0428(0x0001) (Edit, ZeroConstructor, IsPlainOldData)
+	unsigned char                                      UnknownData00[0x7];                                       // 0x0429(0x0007) MISSED OFFSET
 
 	static UClass* StaticClass()
 	{
@@ -302,6 +301,55 @@ public:
 };
 
 
+// Class StatusEffects.StatusApplicationDesc
+// 0x0020 (0x0048 - 0x0028)
+class UStatusApplicationDesc : public UObject
+{
+public:
+	struct FEventAppliedStatusToTargets                ApplicationEvent;                                         // 0x0028(0x0020)
+
+	static UClass* StaticClass()
+	{
+		static auto ptr = UObject::FindObject<UClass>(_xor_("Class StatusEffects.StatusApplicationDesc"));
+		return ptr;
+	}
+
+};
+
+
+// Class StatusEffects.StatusApplicationMonitorComponent
+// 0x0008 (0x00D0 - 0x00C8)
+class UStatusApplicationMonitorComponent : public UActorComponent
+{
+public:
+	class UClass*                                      StatusApplicationTrigger;                                 // 0x00C8(0x0008) (Edit, ZeroConstructor, DisableEditOnInstance, IsPlainOldData)
+
+	static UClass* StaticClass()
+	{
+		static auto ptr = UObject::FindObject<UClass>(_xor_("Class StatusEffects.StatusApplicationMonitorComponent"));
+		return ptr;
+	}
+
+};
+
+
+// Class StatusEffects.StatusEffectHelperFunctionLibrary
+// 0x0000 (0x0028 - 0x0028)
+class UStatusEffectHelperFunctionLibrary : public UBlueprintFunctionLibrary
+{
+public:
+
+	static UClass* StaticClass()
+	{
+		static auto ptr = UObject::FindObject<UClass>(_xor_("Class StatusEffects.StatusEffectHelperFunctionLibrary"));
+		return ptr;
+	}
+
+
+	static void ApplyOneShotStatus(class AActor* Recipient, const struct FStatus& Status);
+};
+
+
 // Class StatusEffects.StatusEffectTicketDispenserInterface
 // 0x0000 (0x0028 - 0x0028)
 class UStatusEffectTicketDispenserInterface : public UInterface
@@ -379,6 +427,21 @@ public:
 	static UClass* StaticClass()
 	{
 		static auto ptr = UObject::FindObject<UClass>(_xor_("Class StatusEffects.StatusEffectsSettings"));
+		return ptr;
+	}
+
+};
+
+
+// Class StatusEffects.StatusResponseNull
+// 0x0000 (0x0028 - 0x0028)
+class UStatusResponseNull : public UStatusResponse
+{
+public:
+
+	static UClass* StaticClass()
+	{
+		static auto ptr = UObject::FindObject<UClass>(_xor_("Class StatusEffects.StatusResponseNull"));
 		return ptr;
 	}
 

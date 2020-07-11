@@ -1,5 +1,6 @@
 #pragma once
 
+#include "xorstr.hpp"
 #include "SoT_Basic.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_Engine_classes.hpp"
@@ -33,7 +34,7 @@
 #include "SoT_MovieSceneTracks_classes.hpp"
 #include "SoT_MovieScene_classes.hpp"
 #include "SoT_NaturalDisasters_classes.hpp"
-#include "SoT_ObjectLifetime_classes.hpp"
+#include "SoT_ObjectCollection_classes.hpp"
 #include "SoT_ObjectMessaging_classes.hpp"
 #include "SoT_Pets_classes.hpp"
 #include "SoT_PirateGenerator_classes.hpp"
