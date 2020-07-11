@@ -3,7 +3,7 @@
 // Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x8)
+#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
@@ -12,33 +12,33 @@
 
 namespace SDK
 {
-//---------------------------------------------------------------------------
-//Enums
-//---------------------------------------------------------------------------
+	//---------------------------------------------------------------------------
+	//Enums
+	//---------------------------------------------------------------------------
 
-// Enum Tethering.ETetherConstrainMode
-enum class ETetherConstrainMode : uint8_t
-{
-	ETetherConstrainMode__ShrinkLength = 0,
-	None                           = 1,
-	EWieldableItemBlockingAnimState__Main = 2
-};
+	// Enum Tethering.ETetherConstrainMode
+	enum class ETetherConstrainMode : uint8_t
+	{
+		ETetherConstrainMode__ShrinkLength = 0,
+		None = 1,
+		EWieldableItemBlockingAnimState__Main = 2
+	};
 
 
 
-//---------------------------------------------------------------------------
-//Script Structs
-//---------------------------------------------------------------------------
+	//---------------------------------------------------------------------------
+	//Script Structs
+	//---------------------------------------------------------------------------
 
-// ScriptStruct Tethering.TetherProjectileImpact
-// 0x0008
-struct FTetherProjectileImpact
-{
-	class AActor*                                      HitActor;                                                 // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
-};
+	// ScriptStruct Tethering.TetherProjectileImpact
+	// 0x0008
+	struct FTetherProjectileImpact
+	{
+		class AActor* HitActor;                                                 // 0x0000(0x0008) (ZeroConstructor, IsPlainOldData)
+	};
 
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif

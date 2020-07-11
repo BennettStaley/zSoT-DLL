@@ -3,7 +3,7 @@
 // Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x8)
+#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Basic.hpp"
@@ -13,23 +13,23 @@
 
 namespace SDK
 {
-//---------------------------------------------------------------------------
-//Enums
-//---------------------------------------------------------------------------
+	//---------------------------------------------------------------------------
+	//Enums
+	//---------------------------------------------------------------------------
 
-// Enum PositionalVoice.EVoiceChatState
-enum class EVoiceChatState : uint8_t
-{
-	EVoiceChatState__Silent        = 0,
-	None                           = 1,
-	EVoiceChatState__EVoiceChatState_MAX = 2,
-	EQuestStatus__Pending          = 3
-};
+	// Enum PositionalVoice.EVoiceChatState
+	enum class EVoiceChatState : uint8_t
+	{
+		EVoiceChatState__Silent = 0,
+		None = 1,
+		EVoiceChatState__EVoiceChatState_MAX = 2,
+		EQuestStatus__Pending = 3
+	};
 
 
 
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif

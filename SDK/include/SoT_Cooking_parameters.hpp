@@ -3,25 +3,25 @@
 // Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x8)
+#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Cooking_classes.hpp"
 
 namespace SDK
 {
-//---------------------------------------------------------------------------
-//Parameters
-//---------------------------------------------------------------------------
+	//---------------------------------------------------------------------------
+	//Parameters
+	//---------------------------------------------------------------------------
 
-// Function Cooking.CookerComponent.OnRep_CookingState
-struct UCookerComponent_OnRep_CookingState_Params
-{
-	struct FCookingClientRepresentation                OldRepresentation;                                        // (ConstParm, Parm, OutParm, ReferenceParm)
-};
+	// Function Cooking.CookerComponent.OnRep_CookingState
+	struct UCookerComponent_OnRep_CookingState_Params
+	{
+		struct FCookingClientRepresentation                OldRepresentation;                                        // (ConstParm, Parm, OutParm, ReferenceParm)
+	};
 
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif

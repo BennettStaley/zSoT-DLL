@@ -3,7 +3,7 @@
 // Sea of Thieves (1.4.16) SDK
 
 #ifdef _MSC_VER
-	#pragma pack(push, 0x8)
+#pragma pack(push, 0x8)
 #endif
 
 #include "SoT_Sessions_structs.hpp"
@@ -13,5 +13,5 @@ namespace SDK
 }
 
 #ifdef _MSC_VER
-	#pragma pack(pop)
+#pragma pack(pop)
 #endif

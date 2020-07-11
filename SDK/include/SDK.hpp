@@ -1,6 +1,5 @@
 #pragma once
 
-#include "xorstr.hpp"
 #include "SoT_Basic.hpp"
 #include "SoT_CoreUObject_classes.hpp"
 #include "SoT_Engine_classes.hpp"
@@ -58,3 +57,13 @@
 #include "SoT_Water_classes.hpp"
 #include "SoT_Wind_classes.hpp"
 #include "SoT_WwiseAudio_classes.hpp"
+
+
+// new
+#include "SoT_AthenaAIAbilities_classes.hpp"
+#include "SoT_ItemQuality_classes.hpp"
+#include "SoT_EnchantedCompass_classes.hpp"
+#include "SoT_Reviving_classes.hpp"
+#include "SoT_EmissaryLevel_classes.hpp"
+#include "SoT_ResourceContentionFramework_classes.hpp"
+#include "SoT_AthenaServerMigration_classes.hpp"
